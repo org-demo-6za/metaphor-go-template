@@ -3,7 +3,7 @@ info:
   version: 1.0.0
   title: Metaphor Go API
   description: >
-    metaphor is an example application which serves as a demonstration space for how your applications hook into
+    Metaphor is an example application which serves as a demonstration space for how your applications hook into
     your infrastructure and tooling.
 paths:
   /app:
