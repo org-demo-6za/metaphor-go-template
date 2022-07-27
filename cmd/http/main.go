@@ -23,6 +23,7 @@ func main() {
 	r.PathPrefix("/swagger-ui/").Handler(sh)
 
 	config := configs.ReadConfig()
+	// note; http client is not in use, it's only a placeholder to remember we can use any required resource to the handler
 	httpClient := http.DefaultClient
 
 	appHandler := handlers.NewApp(config, httpClient)
