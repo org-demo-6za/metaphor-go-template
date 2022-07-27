@@ -22,7 +22,11 @@ paths:
                   app_name:
                     type: string
                     description: Application name
-                    example: metaphor
+                    example: Metaphor
+                  company_name:
+                    type: string
+                    description: Company name
+                    example: Kubefirst
                   chart_version:
                     type: string
                     description: Helm Chart version
@@ -59,12 +63,12 @@ paths:
           description: Service is unavailable
   /app/kill:
     get:
-      summary: Health endpoint checks app availability.
+      summary: Force kill the process that is running this API.
+      description: >
+        A Go panic() is called on this endpoint, and the endpoint won't be able to recover from it, returning http error.
       tags:
         - App
       responses:
-        '200':
-          description: It will return 200/ok when app is up and running.
         # (todo ->check if we have this condition on our infra)
         '503':
           description: Service is unavailable

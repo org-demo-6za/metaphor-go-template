@@ -10,8 +10,6 @@ import (
 	"os"
 )
 
-// todo: fix kill swagger
-
 func main() {
 	// setup logging with color and code line on logs
 	zerolog.SetGlobalLevel(zerolog.DebugLevel)
@@ -21,7 +19,7 @@ func main() {
 	r := mux.NewRouter().StrictSlash(true)
 
 	// server swagger-ui
-	sh := http.StripPrefix("/swagger-ui/", http.FileServer(http.Dir("./third_party/swagger-ui/")))
+	sh := http.StripPrefix("/swagger-ui/", http.FileServer(http.Dir("../../third_party/swagger-ui/")))
 	r.PathPrefix("/swagger-ui/").Handler(sh)
 
 	config := configs.ReadConfig()

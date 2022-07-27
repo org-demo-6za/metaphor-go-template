@@ -1,0 +1,18 @@
+version: "3"
+
+services:
+
+  metaphor-go:
+    build:
+      context: .
+      dockerfile: ./build/Dockerfile
+    container_name: metaphor-go-api
+    environment:
+      CHART_VERSION: 1.0.0
+      DOCKER_TAG: 1.0.0
+      SECRET_ONE: secret-one-example
+      SECRET_TWO: secret-two-example
+      CONFIG_ONE: config-one-example
+      CONFIG_TWO: config-two-example
+    ports:
+      - "3000:3000"

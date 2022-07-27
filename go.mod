@@ -3,6 +3,7 @@ module github.com/kubefirst/metaphor-go
 go 1.18
 
 require (
+	github.com/caarlos0/env/v6 v6.9.3
 	github.com/gorilla/mux v1.8.0
 	github.com/rs/zerolog v1.27.0
 )
