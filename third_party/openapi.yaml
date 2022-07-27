@@ -1,0 +1,121 @@
+openapi: 3.0.3
+info:
+  version: 1.0.0
+  title: Metaphor Go API
+  description: >
+    metaphor is an example application which serves as a demonstration space for how your applications hook into
+    your infrastructure and tooling.
+paths:
+  /app:
+    get:
+      summary: Collects data from Kubefirst provisioned application from different services.
+      tags:
+        - App
+      responses:
+        '200':
+          description: Returns application data collected from the application it self, Helm and Docker.
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  app_name:
+                    type: string
+                    description: Application name
+                    example: metaphor
+                  chart_version:
+                    type: string
+                    description: Helm Chart version
+                    example: 1.0.0
+                  docker_tag:
+                    type: string
+                    description: Docker tag name
+                    example: 1.0.0
+        # (todo ->check if we have this condition on our infra)
+        '503':
+          description: Service is unavailable
+  /app/performance:
+    get:
+      summary: >
+        Simulate request speed by returning random response time on this endpoint.
+      tags:
+        - App
+      responses:
+        '200':
+          description: Returns a random request elapsed time.
+        # (todo ->check if we have this condition on our infra)
+        '503':
+          description: Service is unavailable
+  /app/healthz:
+    get:
+      summary: Health endpoint checks app availability.
+      tags:
+        - App
+      responses:
+        '200':
+          description: It will return 200/ok when app is up and running.
+        # (todo ->check if we have this condition on our infra)
+        '503':
+          description: Service is unavailable
+  /app/kill:
+    get:
+      summary: Health endpoint checks app availability.
+      tags:
+        - App
+      responses:
+        '200':
+          description: It will return 200/ok when app is up and running.
+        # (todo ->check if we have this condition on our infra)
+        '503':
+          description: Service is unavailable
+  /vault:
+    get:
+      summary: Collects data from Kubefirst provisioned Vault secret store.
+      tags:
+        - Vault
+      description: The returned data are non-sensitive, and are meant for demonstration purpose.
+      responses:
+        '200':
+          description: >
+            Returns non-sensitive data collected from Vault. The returned data can be updated login into your
+            Vault Kubefirst service, and changing the Vault value for SECRET_ONE and SECRET_TWO.
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  secret_one:
+                    type: string
+                    description: Non-sensitive Vault data, meant for demonstration purpose.
+                  secret_two:
+                    type: string
+                    description: Non-sensitive Vault data, meant for demonstration purpose.
+        # (todo ->check if we have this condition on our infra)
+        '503':
+          description: Service is unavailable
+  /kubernetes:
+    get:
+      summary: Collects data from Kubefirst provisioned Kubernetes ConfigMap.
+      tags:
+        - Kubernetes
+      description: >
+        The returned data are non-sensitive, and are meant for demonstration purpose.
+      responses:
+        '200':
+          description: >
+            Returns non-sensitive data collected from Kubernetes ConfigMap. The returned data can be updated via kubectl,
+            fields to be updated are CONFIG_ONE and CONFIG_TWO.
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  config_one:
+                    type: string
+                    description: Non-sensitive Kubernetes ConfigMap data, meant for demonstration purpose.
+                  config_two:
+                    type: string
+                    description: Non-sensitive Kubernetes ConfigMap data, meant for demonstration purpose.
+        # (todo ->check if we have this condition on our infra)
+        '503':
+          description: Service is unavailable
