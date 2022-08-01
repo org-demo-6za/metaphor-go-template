@@ -1,0 +1,27 @@
+name: metaphor
+
+on:
+  push:
+    branches:
+    - main
+  pull_request:
+    branches:
+    - main
+    types:
+    - opened
+    - synchronize
+    - closed
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v3
+        with:
+          fetch-depth: 2
+            - run: git checkout HEAD^
+
+      - name: build
+        run: |
+          go build -o metaphor-go
