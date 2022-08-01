@@ -3,14 +3,14 @@ name: metaphor
 on:
   push:
     branches:
-    - main
+      - main
   pull_request:
     branches:
-    - main
+      - main
     types:
-    - opened
-    - synchronize
-    - closed
+      - opened
+      - synchronize
+      - closed
 
 jobs:
   build:
@@ -20,7 +20,7 @@ jobs:
       - uses: actions/checkout@v3
         with:
           fetch-depth: 2
-          - run: git checkout HEAD^
+      - run: git checkout HEAD^
 
       - name: build
         run: |
