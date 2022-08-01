@@ -3,25 +3,30 @@ name: metaphor
 on:
   push:
     branches:
-    - main
+      - main
   pull_request:
     branches:
-    - main
+      - main
     types:
-    - opened
-    - synchronize
-    - closed
+      - opened
+      - synchronize
+      - closed
 
 jobs:
   build:
+    name: Build Go Application
     runs-on: ubuntu-latest
-
     steps:
-      - uses: actions/checkout@v3
-        with:
-          fetch-depth: 2
-            - run: git checkout HEAD^
 
-      - name: build
-        run: |
-          go build -o metaphor-go
+      - name: Checkout
+        uses: actions/checkout@v3
+        with:
+          ref: main
+
+      - name: Setup Go
+        uses: actions/setup-go@v3
+        with:
+          go-version: 1.18
+
+      - name: Test
+        run: go test -v ./...
