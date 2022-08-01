@@ -19,7 +19,7 @@ jobs:
     steps:
 
       - name: Checkout
-        uses: actions/checkout@v2
+        uses: actions/checkout@v3
         with:
           ref: main
 
@@ -29,4 +29,4 @@ jobs:
           go-version: 1.18
 
       - name: Test
-        run: go test -v ./..
+        run: go test -v ./...
